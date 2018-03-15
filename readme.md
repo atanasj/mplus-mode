@@ -9,7 +9,7 @@ title: Mplus mode for emacs and dictionnary of words for autocompletion.
   
 * *mplus-mode.el*: emacs major mode for mplus syntax file. 
 
-	- add this lines to .emacs.
+	- add these lines to .emacs.
  
       > ;;; Mplus-mode.   
 	  > ;;; changer le path (au besoin).  
@@ -27,6 +27,7 @@ title: Mplus mode for emacs and dictionnary of words for autocompletion.
 	  >		  )  
 	  
 * *test.inp*: Mplus syntax test file.
+* *test.dat*: iris data file. 
 
 
 
