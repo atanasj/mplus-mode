@@ -11,20 +11,20 @@ title: Mplus mode for emacs and dictionnary of words for autocompletion.
 
 	- add this lines to .emacs.
  
-      > ;;; Mplus-mode.
-	  > ;;; changer le path (au besoin).
-      >	(load "C:/charles/Statistiques/Mplus_mode/mplus-mode.el")
-	  > (setq auto-mode-alist (cons '("\\.inp" . mplus-mode) auto-mode-alist))
-      >	(add-hook 'mplus-mode-hook
-      >		  (lambda ()
-      >		    (require 'auto-complete-config)
-	  >		    (add-to-list 'ac-dictionary-directories "~/.emacs.d/es-ac-dict")
-	  >		    (setq-default ac-sources '(ac-source-abbrev
-	  >					       ac-source-dictionary
-	  >					       ac-source-words-in-same-mode-buffers))
-	  >		    (add-to-list 'ac-modes 'mplus-mode)
-	  >		    (add-hook 'mplus-hook (lambda () (auto-complete-mode 1))))
-	  >		  )
+      > ;;; Mplus-mode.   
+	  > ;;; changer le path (au besoin).  
+      >	(load "C:/charles/Statistiques/Mplus_mode/mplus-mode.el")  
+	  > (setq auto-mode-alist (cons '("\\.inp" . mplus-mode) auto-mode-alist))  
+      >	(add-hook 'mplus-mode-hook  
+      >		  (lambda ()  
+      >		    (require 'auto-complete-config)  
+	  >		    (add-to-list 'ac-dictionary-directories "~/.emacs.d/es-ac-dict")  
+	  >		    (setq-default ac-sources '(ac-source-abbrev  
+	  >					       ac-source-dictionary  
+	  >					       ac-source-words-in-same-mode-buffers))  
+	  >		    (add-to-list 'ac-modes 'mplus-mode)  
+	  >		    (add-hook 'mplus-hook (lambda () (auto-complete-mode 1))))  
+	  >		  )  
 	  
 * *test.inp*: Mplus syntax test file.
 
