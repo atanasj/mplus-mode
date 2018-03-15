@@ -1,0 +1,37 @@
+TITLE:
+    "Titre d'un exemple d'analyse avec Mplus";
+
+DATA:
+    FILE IS "test.dat";
+    
+DATA IMPUTATION:
+    
+    
+VARIABLE:
+    NAMES ARE iris1 iris2 iris3 iris4;
+    USEVARIABLES ARE iris1 iris2 iris3 iris4;
+    CLASSES species(3);
+
+ANALYSIS:
+    TYPE = MIXTURE;
+
+MODEL:
+    %OVERALL%
+    [iris1 iris2 iris3 iris4];
+    iris1 iris2 iris3 iris4;
+    iris1 WITH iris2 iris3 iris4;
+    iris2 WITH iris3 iris4;
+    iris3 WITH iris4;
+
+OUTPUT:
+    STDYX;
+    TECH8;
+
+SAVEDATA:
+    FILE IS "test_out.dat";
+    SAVE = CPROBABILITIES;
+
+PLOT:
+    TYPE IS PLOT1 PLOT2 PLOT3;
+    SERIES IS iris1 (1) iris2 (2) iris3 (3) iris4 (4);
+    
