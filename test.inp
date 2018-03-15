@@ -22,7 +22,6 @@ MODEL:
     iris1 WITH iris2 iris3 iris4;
     iris2 WITH iris3 iris4;
     iris3 WITH iris4;
-
 OUTPUT:
     STDYX;
     TECH8;
