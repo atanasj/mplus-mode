@@ -14,7 +14,7 @@ title: Mplus mode for emacs and dictionnary of words for autocompletion.
       > ;;; Mplus-mode.   
 	  > ;;; changer le path (au besoin).  
       >	(load "C:/charles/Statistiques/Mplus_mode/mplus-mode.el")  
-	  > (setq auto-mode-alist (cons '("\\.inp" . mplus-mode) auto-mode-alist))  
+	  > (setq auto-mode-alist (cons '("\\\\.inp" . mplus-mode) auto-mode-alist))  
       >	(add-hook 'mplus-mode-hook  
       >		  (lambda ()  
       >		    (require 'auto-complete-config)  
