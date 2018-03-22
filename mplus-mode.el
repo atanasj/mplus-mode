@@ -38,7 +38,7 @@
 ;;; Run the file in mplus;
 (fset 'run-mplus
       (lambda () (interactive)
-	(shell-command (concat "mplus " (buffer-file-name)))
+	(shell-command (concat "mplus " "\"" (buffer-name) "\""))
 	)
       )
 
@@ -55,6 +55,8 @@
 ;;; 
 (defconst mplus-font-lock-keywords-1
   (list
+   '("[!].*$"
+     . font-lock-comment-face)
    '("\\<\\(ANALYSIS\\|D\\(?:ATA\\(?: \\(?:COHORT\\|IMPUTATION\\|LONGTOWIDE\\|MISSING\\|SURVIVAL\\|TWOPART\\|WIDETOLONG\\)\\)?\\|EFINE\\)\\|MO\\(?:DEL\\(?: \\(?:CO\\(?:NSTRAINT\\|VERAGE\\)\\|INDIRECT\\|MISSING\\|P\\(?:OPULATION\\|RIORS\\)\\|TEST\\)\\)?\\|NTECARLO\\)\\|OUTPUT\\|PLOT\\|SAVEDATA\\|\\(?:TIT\\|VARIAB\\)LE\\)\\>"
      . font-lock-builtin-face)
    '("\\('\\w*'\\)" . font-lock-variable-name-face))
@@ -69,9 +71,7 @@
 		   '("\\(A\\(?:CONVERGENCE\\|D\\(?:APTIVE\\|DFREQUENCY\\)\\|ITERATIONS\\|L\\(?:GORITHM\\|IGNMENT\\)\\|STARTS\\|UXILIARY\\)\\|B\\(?:2WEIGHT IS\\|3WEIGHT IS\\|ASEHAZARD\\(?: IS\\)?\\|CONVERGENCE\\|ETWEEN ARE\\|I\\(?:NARY\\|TERATIONS\\)\\|OOTSTRAP\\|PARAMETERS IS\\|SEED\\|W\\(?:EIGHT\\|TSCALE IS\\)\\)\\|C\\(?:ATEGORICAL ARE\\|ENSORED ARE\\|H\\(?:AINS\\|OLESKY\\)\\|L\\(?:\\(?:ASSE\\|USTER I\\)S\\)\\|O\\(?:H\\(?:ORT IS\\|RECODE\\)\\|N\\(?:STRAINT\\|TINUOUS\\|VERGENCE\\)\\|PATTERN IS\\|UNT ARE\\|V\\(?:ARIANCE IS\\|ERAGE\\)\\)\\|SIZES\\|UTPOINTS?\\)\\|D\\(?:ESCRIPTIVE\\|I\\(?:FFTEST\\(?: IS\\)?\\|STRIBUTION\\)\\|SURVIVAL ARE\\)\\|EST\\(?:BASELINE IS\\|IMAT\\(?:ES ARE\\|OR\\)\\)\\|F\\(?:ACTORS\\(?: ARE\\)?\\|BITERATIONS\\|I\\(?:LE IS\\|NITE\\)\\|ORMAT\\(?: IS\\)?\\|REQWEIGHT IS\\)\\|G\\(?:EN\\(?:CLASSES\\|ERATE\\)\\|ROUPING IS\\)\\|H\\(?:1\\(?:CONVERGENCE\\|\\(?:ITERATION\\|START\\)S\\)\\|AZARDC\\)\\|I\\(?:DVARIABLE\\(?: IS\\)?\\|MPUTE\\|N\\(?:FORMATION\\|TE\\(?:GRATION\\|RACTIVE\\)\\)\\|TERATIONS\\)\\|K\\(?:-1STARTS\\|APLANMEIER IS\\|NOWNCLASS\\|OLMOGOROV\\)\\|L\\(?:AGGED ARE\\|I\\(?:NK\\|STWISE\\)\\|O\\(?:G\\(?:CRITERION\\|HIGH\\|LOW\\)\\|NG\\)\\|R\\(?:ESPONSES\\(?: ARE\\)?\\|T\\(?:BOOTSTRAP\\|STARTS\\)\\)\\)\\|M\\(?:ATRIX\\|C\\(?:CONVERGENCE\\|ITERATIONS\\|ONVERGENCE\\|SEED\\)\\|DITERATIONS\\|ETRIC\\|F\\(?:ILE\\|ORMAT\\)\\|I\\(?:SS\\(?:FLAG\\|ING\\(?: ARE\\)?\\)\\|TERATIONS\\|X[CU]\\)\\|MISSING\\|NAMES\\|O\\(?:DEL\\|NITOR IS\\)\\|SELECT\\|U\\(?:CONVERGENCE\\|ITERATIONS\\|LTIPLIER\\(?: IS\\)?\\)\\)\\|N\\(?:AMES\\(?: ARE\\)?\\|CSIZES\\|DATASETS\\|GROUPS\\|O\\(?:BSERVATIONS\\(?: ARE\\)?\\|MINAL ARE\\)\\|REPS\\)\\|O\\(?:PTSEED\\|UTLIERS ARE\\)\\|P\\(?:A\\(?:RA\\(?:LLEL\\|METERIZATION\\)\\|T\\(?:\\(?:MIS\\|PROB\\|TERN I\\)S\\)\\)\\|OINT\\|R\\(?:EDICTOR\\|IOR\\|OCESSORS\\)\\)\\|R\\(?:ANKING IS\\|CONVERGENCE\\|E\\(?:CORDLENGTH IS\\|P\\(?:ETITION\\|\\(?:S\\|WEIGHTS AR\\)E\\)\\|S\\(?:PONSE IS\\|ULTS ARE\\)\\)\\|ITERATIONS\\|LOGCRITERION\\|O\\(?:TATION\\|UNDING\\|WSTANDARDIZATION\\)\\|STARTS\\)\\|S\\(?:A\\(?:MPLE IS\\|VE\\)\\|DITERATIONS\\|E\\(?:ED\\|RIES IS\\)\\|I\\(?:GBETWEEN IS\\|MPLICITY\\)\\|T\\(?:ARTS\\|CONVERGENCE\\|D\\(?:DISTRIBUTION IS\\|RESULTS ARE\\)\\|ITERATIONS\\|RATIFICATION IS\\|S\\(?:CALE\\|EED\\)\\|VALUES\\)\\|U\\(?:BPOPULATION IS\\|RVIVAL ARE\\)\\|WMATRIX\\(?: IS\\)?\\)\\|T\\(?:ECH\\(?:[34] IS\\)\\|HIN\\|I\\(?:ME\\(?:CENSORED ARE\\|MEASURES\\)\\|NTERVAL IS\\)\\|NAMES\\|OLERANCE\\|RA\\(?:INING\\|NSFORM\\)\\|SCORES ARE\\|YPE\\(?: IS\\)?\\)\\|U\\(?:\\(?:CELLSIZ\\|SE\\(?:\\(?:OBSERVATION\\|VARIABLE\\)S AR\\)\\)E\\)\\|VA\\(?:LUES\\|RIANCES?\\)\\|W\\(?:EIGHT IS\\|I\\(?:\\(?:D\\|THIN AR\\)E\\)\\|TSCALE IS\\)\\)"
 		     . font-lock-keyword-face)
 		   '("\\<\\(%\\(?:BETWEEN%\\|COLUMN\\|OVERALL%\\|ROW\\|TOTAL\\|WITHIN%\\)\\|AL\\(?:IGNMENT\\|L\\(?:FREE\\)?\\)\\|B\\(?:A\\(?:S\\(?:EHAZARD\\|IC\\)\\|YES\\)\\|C\\(?:BOOTSTRAP\\|HWEIGHTS\\)\\|I-\\(?:CF-QUARTIMAX\\|GEOMIN\\)\\|OOTSTRAP\\|RR\\)\\|C\\(?:ENTER\\|F-\\(?:EQUAMAX\\|FACPARSIM\\|\\(?:PARS\\|QUART\\|VAR\\)IMAX\\)\\|HECK\\|INTERVAL\\|LUSTER\\(?:_MEAN\\)?\\|O\\(?:M\\(?:BINATION\\|PLEX\\)\\|N\\(?:FIGURAL\\|VERGENCE\\)\\|OKS\\|RRELATION\\|UNT\\|VARIANCE\\)\\|PROBABILITIES\\|R\\(?:AWFER\\|OSS\\(?:CLASSIFIED\\|TABS\\)\\)\\|UT\\)\\|D\\(?:ELTA\\|IFFERENCE\\|O\\)\\|E\\(?:CLUSTER\\|FA\\|MA?\\|NTROPY\\|QTAIL\\|XPECTED\\)\\|F\\(?:A\\(?:LSE\\|Y\\)\\|IXED\\|OURTHRT\\|REE\\|S\\(?:CO\\(?:EFFICIENT\\|MPARISON\\|RES\\)\\|DETERMINACY\\)?\\|ULLCO\\(?:RR\\|V\\)\\)\\|G\\(?:AUSSHERMITE\\|E\\(?:NERAL\\|OMIN\\)\\|\\(?:IBB\\|L\\)S\\)\\|H\\(?:1\\(?:MODEL\\|SE\\|TECH3\\)\\|PD\\)\\|I\\(?:F\\|MPUTATION\\|N\\(?:D\\(?:IVIDUAL\\)?\\|FLUENCE\\|TEGRATION\\)\\|TERATIONS\\)\\|JACKKNIFE\\|KAISER\\|L\\(?:ATENT\\|O\\(?:G\\(?:IT\\|LI\\(?:KELIHOOD\\|NEAR\\)\\|RANK\\)\\|OP\\)\\|RESPONSES\\)\\|M\\(?:AHALANOBIS\\|CMC\\|E\\(?:ANS?\\|DIAN\\|TRIC\\)\\|I\\(?:SSING\\|XTURE\\)\\|L\\(?:MV\\|[FMR]\\)\\|O\\(?:D\\(?:E\\|INDICES\\)?\\|NTECARLO\\)\\|UML\\|[HL]\\)\\|N\\(?:EW\\|O\\(?:C\\(?:H\\(?:ECK\\|ISQUARE\\)\\|OVARIANCES\\)\\|MEANSTRUCTURE\\|RMAL\\|SERROR\\)\\)\\|O\\(?:B\\(?:LIMIN\\|SERVED\\)\\|DLL\\|FF\\|N\\)\\|P\\(?:ATTERNS\\|ERTURBED\\|LOT[123]?\\|RO\\(?:B\\(?:ABILITY\\|IT\\)\\|DUCT\\|MAX\\|PENSITY\\)\\|SR\\|X[123]\\)\\|QUARTIMIN\\|R\\(?:ANDOM\\|E\\(?:FGROUP\\|GRESSION\\|PWEIGHTS\\|S\\(?:COVARIANCES\\|IDUAL\\)\\)\\|W\\)\\|S\\(?:AMP\\(?:LE\\|STAT\\)\\|CALAR\\|E\\(?:NSITIVITY\\|QUENTIAL\\)\\|KEW\\(?:NORMAL\\|T\\)\\|QRT\\|T\\(?:ANDARD\\(?:IZED?\\)?\\|D\\(?:EVIATIONS\\|YX?\\)\\)\\|VALUES\\|YMMETRIC\\)\\|T\\(?:ARGET\\|DISTRIBUTION\\|ECH\\(?:1[0-6]\\|[1-9]\\)\\|H\\(?:ETA\\|REELEVEL\\)\\|RUE\\|WOLEVEL\\)\\|U\\(?:LS\\(?:MV\\)?\\|N\\(?:\\(?:PERTURB\\|SCAL\\)ED\\)\\)\\|V\\(?:ARIMAX\\|IA\\)\\|WLS\\(?:MV?\\)?\\|_MISSING\\)\\>"
-		     . font-lock-function-name-face)
-		   '("[!].*$"
-		     . font-lock-comment-face)
+		     . font-lock-function-name-face)		   
 		   '("\\<WITH\\|ON\\|BY\\|PON\\|PWITH\\|AT\\|XWITH\\>"
 		     . font-lock-doc-face)))
   "Additional Keywords to highlight in mplus mode")
